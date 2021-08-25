@@ -1,8 +1,8 @@
-export default function Comidas(props) {
+export default function Comidas(props, index) {
     const { image, name, description, price } = props;
 
     return (
-        <li onclick="selecionarComida(this);">
+        <li key={index} onclick="selecionarComida(this);">
             <img src={"imagens/" + image} alt="Imagem Comida" />
 
             <p className="nome-da-opcao"> {name} </p>

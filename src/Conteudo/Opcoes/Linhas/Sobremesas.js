@@ -1,8 +1,8 @@
-export default function Sobremesas(props) {
+export default function Sobremesas(props, index) {
     const { image, name, description, price } = props;
 
     return (
-        <li onclick="selecionarSobremesa(this);">
+        <li key={index} onclick="selecionarSobremesa(this);">
             <img src={"imagens/" + image} alt="" />
 
             <p className="nome-da-opcao"> {name} </p>

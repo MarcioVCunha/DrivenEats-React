@@ -95,24 +95,24 @@ export default function Linhas() {
             <p className="frases-topo-linhas"> Primeiro, seu prato </p>
 
             <ul className="lista-comida">
-                {comidas.map((comida) => {
-                    return <Comidas image={comida.image} name={comida.name} description={comida.description} price={comida.price} />
+                {comidas.map((comida, index) => {
+                    return <Comidas key={index} image={comida.image} name={comida.name} description={comida.description} price={comida.price} />
                 })}
             </ul>
 
             <p className="frases-topo-linhas"> Agora, sua bebida </p>
 
             <ul className="lista-refri">
-                {bebidas.map((bebida) => {
-                    return <Bebidas image={bebida.image} name={bebida.name} description={bebida.description} price={bebida.price} />
+                {bebidas.map((bebida, index) => {
+                    return <Bebidas key={index} image={bebida.image} name={bebida.name} description={bebida.description} price={bebida.price} />
                 })}
             </ul>
 
             <p className="frases-topo-linhas"> Por fim, sua sobremesa</p>
 
             <ul className="lista-sobremesa">
-                {sobremesas.map((sobremesa) => {
-                    return <Sobremesas image={sobremesa.image} name={sobremesa.name} description={sobremesa.description} price={sobremesa.price} />
+                {sobremesas.map((sobremesa, index) => {
+                    return <Sobremesas key={index} image={sobremesa.image} name={sobremesa.name} description={sobremesa.description} price={sobremesa.price} />
                 })}
             </ul>
         </div>
