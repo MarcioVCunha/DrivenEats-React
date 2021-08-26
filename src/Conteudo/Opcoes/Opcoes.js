@@ -1,6 +1,4 @@
-import Comidas from "./Linhas/Comidas";
-import Bebidas from "./Linhas/Bebidas";
-import Sobremesas from "./Linhas/Sobremesas";
+import Menu from "./Linhas/Menu";
 
 const comidas = [{
     image: 'frango.jpg',
@@ -96,7 +94,7 @@ export default function Linhas() {
 
             <ul className="lista-comida">
                 {comidas.map((comida, index) => {
-                    return <Comidas key={index} image={comida.image} name={comida.name} description={comida.description} price={comida.price} />
+                    return <Menu key={index} image={comida.image} name={comida.name} description={comida.description} price={comida.price} />
                 })}
             </ul>
 
@@ -104,7 +102,7 @@ export default function Linhas() {
 
             <ul className="lista-refri">
                 {bebidas.map((bebida, index) => {
-                    return <Bebidas key={index} image={bebida.image} name={bebida.name} description={bebida.description} price={bebida.price} />
+                    return <Menu key={index} image={bebida.image} name={bebida.name} description={bebida.description} price={bebida.price} />
                 })}
             </ul>
 
@@ -112,7 +110,7 @@ export default function Linhas() {
 
             <ul className="lista-sobremesa">
                 {sobremesas.map((sobremesa, index) => {
-                    return <Sobremesas key={index} image={sobremesa.image} name={sobremesa.name} description={sobremesa.description} price={sobremesa.price} />
+                    return <Menu key={index} image={sobremesa.image} name={sobremesa.name} description={sobremesa.description} price={sobremesa.price} />
                 })}
             </ul>
         </div>
