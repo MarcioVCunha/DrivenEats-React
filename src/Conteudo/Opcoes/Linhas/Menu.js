@@ -4,17 +4,23 @@ export default function Menu(props, index) {
     const { image, name, description, price } = props;
 
     const [valor, setValor] = React.useState(0);
+    const [classes, setClasses] = React.useState("");
+    const [classesCont, setClassesCont] = React.useState("quantidade-itens sumir");
 
     function mudarQtd(operacao) {
         if (operacao === 'soma') {
             setValor(valor + 1);
         } else {
+            setClasses('');
             setValor(valor - 1);
         }
     }
 
     return (
-        <li key={index} onclick="selecionarComida(this);">
+        <li className={classes} key={index} onClick={() => {
+            setClasses('selecionado');
+            setClassesCont('quantidade-itens');
+        }}>
             <img src={"imagens/" + image} alt="Imagem Comida" />
             <div className='conteiner-abaxio-foto'>
                 <div className="descricao-item">
@@ -23,7 +29,7 @@ export default function Menu(props, index) {
                     <p className="preco-da-opcao"> R$ {price} </p>
                 </div>
 
-                <div className="quantidade-itens">
+                <div className={classesCont}>
                     <button onClick={() => mudarQtd('soma')}>+</button>
                     <p>{valor}</p>
                     <button onClick={() => mudarQtd('subtracao')}>-</button>
