@@ -3,15 +3,20 @@ import React from 'react';
 export default function Menu(props, index) {
     const { image, name, description, price } = props;
 
-    const [valor, setValor] = React.useState(0);
+    const [valor, setValor] = React.useState(1);
     const [classes, setClasses] = React.useState("");
     const [classesCont, setClassesCont] = React.useState("quantidade-itens sumir");
 
-    function mudarQtd(operacao) {
+    function mudarQtd(event, operacao) {
+        event.stopPropagation();
+
         if (operacao === 'soma') {
             setValor(valor + 1);
         } else {
-            setClasses('');
+            if (valor === 1) {
+                setClasses('');
+                setClassesCont('quantidade-itens sumir');
+            }
             setValor(valor - 1);
         }
     }
@@ -30,9 +35,9 @@ export default function Menu(props, index) {
                 </div>
 
                 <div className={classesCont}>
-                    <button onClick={() => mudarQtd('soma')}>+</button>
+                    <button onClick={(event) => mudarQtd(event, 'soma')}>+</button>
                     <p>{valor}</p>
-                    <button onClick={() => mudarQtd('subtracao')}>-</button>
+                    <button onClick={(event) => mudarQtd(event, 'subtracao')}>-</button>
                 </div>
             </div>
         </li>
