@@ -1,4 +1,5 @@
 import Menu from "./Linhas/Menu";
+import React from "react";
 
 const comidas = [{
     image: 'frango.jpg',
@@ -87,14 +88,62 @@ const sobremesas = [{
 
 }]
 
-export default function Linhas() {
+let pedido = [];
+
+export default function Linhas(props) {
+
+
+
+    const { averiguarPedido } = props;
+
+    function mudarQtd(event, operacao, setQtd, qtd, name, price, type, setClasses, setClassesCont) {
+        event.stopPropagation();
+
+        if (operacao === 'soma') {
+            setQtd(qtd + 1);
+            definirSelecionado(qtd + 1, name, price, type);
+
+        } else if (operacao === 'subtracao') {
+            if (qtd === 1) {
+                setClasses('');
+                setClassesCont('quantidade-itens sumir');
+                definirSelecionado(qtd = 0, name, price, type);
+            } else {
+                setQtd(qtd - 1);
+                definirSelecionado(qtd - 1, name, price, type);
+            }
+        }
+    }
+
+    function definirSelecionado(qtd, name, price, type) {
+        let repetido = 0;
+
+        for (let i = 0; i < pedido.length; i++) {
+            if (pedido[i].name === name) {
+                pedido[i].qtd = qtd;
+                repetido++;
+            }
+        }
+
+        if (repetido === 0) {
+            pedido.push({
+                name: name,
+                price: price,
+                qtd: qtd,
+                type: type
+            })
+        }
+        console.log(pedido);
+        averiguarPedido(pedido);
+    }
+
     return (
         <div className="coluna-de-opcoes">
             <p className="frases-topo-linhas"> Primeiro, seu prato </p>
 
             <ul className="lista-comida">
                 {comidas.map((comida, index) => {
-                    return <Menu key={index} image={comida.image} name={comida.name} description={comida.description} price={comida.price} />
+                    return <Menu key={index} definirSelecionado={definirSelecionado} mudarQtd={mudarQtd} image={comida.image} name={comida.name} description={comida.description} price={comida.price} type='comida' />
                 })}
             </ul>
 
@@ -102,7 +151,7 @@ export default function Linhas() {
 
             <ul className="lista-refri">
                 {bebidas.map((bebida, index) => {
-                    return <Menu key={index} image={bebida.image} name={bebida.name} description={bebida.description} price={bebida.price} />
+                    return <Menu key={index} definirSelecionado={definirSelecionado} mudarQtd={mudarQtd} image={bebida.image} name={bebida.name} description={bebida.description} price={bebida.price} type='bebida' />
                 })}
             </ul>
 
@@ -110,7 +159,7 @@ export default function Linhas() {
 
             <ul className="lista-sobremesa">
                 {sobremesas.map((sobremesa, index) => {
-                    return <Menu key={index} image={sobremesa.image} name={sobremesa.name} description={sobremesa.description} price={sobremesa.price} />
+                    return <Menu key={index} definirSelecionado={definirSelecionado} mudarQtd={mudarQtd} image={sobremesa.image} name={sobremesa.name} description={sobremesa.description} price={sobremesa.price} type='sobremesa' />
                 })}
             </ul>
         </div>
