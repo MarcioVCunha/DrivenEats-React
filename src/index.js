@@ -1,8 +1,8 @@
 import reactDom from 'react-dom';
 import Corpo from './Conteudo/Corpo';
 
-function App(){
-    return(
+function App() {
+    return (
         <div>
             <Corpo />
         </div>

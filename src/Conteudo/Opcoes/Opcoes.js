@@ -90,10 +90,9 @@ const sobremesas = [{
 
 let pedido = [];
 
+export { pedido };
+
 export default function Linhas(props) {
-
-
-
     const { averiguarPedido } = props;
 
     function mudarQtd(event, operacao, setQtd, qtd, name, price, type, setClasses, setClassesCont) {
